@@ -63,6 +63,10 @@ class User < ApplicationRecord
     def send_password_reset_email
       UserMailer.password_reset(self).deliver_now
     end
+
+    def feed
+    Micropost.where("user_id = ?", id)
+    end
   private
 
     # メールアドレスをすべて小文字にする
